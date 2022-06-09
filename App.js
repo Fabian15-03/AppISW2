@@ -1,12 +1,16 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React , {useState , useEffect} from 'react';
+import { StyleSheet, Text, View , LogBox} from 'react-native';
+import RouteNoAuth from './src/Navigation/RouteNoAuth'
 
+LogBox.ignoreLogs([
+  "Animated",
+  "Setting a timer",
+  "Avatar.onAccessoryPress",
+  "Avatar.showAccessory",
+]);
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <RouteNoAuth/>
   );
 }
 
@@ -16,5 +20,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+
+    
   },
 });
