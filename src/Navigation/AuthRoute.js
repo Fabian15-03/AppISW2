@@ -6,7 +6,6 @@ import { Icon } from 'react-native-elements';
 
 import TiendaStack from './TiendaStack';
 import PerfilStack from './ProfileStack';
-import Promotions from './PromoStack';
 import ServicioStack from "./ServiceStack";
 import HistorialStack from "./HistoryStack";
 import colors from '../Utils/colors';
@@ -15,33 +14,71 @@ const Tab = createBottomTabNavigator();
 
 const TabBar = ()=> {
     return(
-        <Tab.Navigator initialRouteName="tienda" tabBarOptions={{
-            inactiveTintColor: colors.WHITE, activeTintColor: colors.ORANGE, 
-            style:{
-                borderTopWidth:3,
+        <Tab.Navigator initialRouteName="tienda" sceneContainerStyle={{backgroundColor:colors.BACKGROUNDCOLOR}} screenOptions={{
+            tabBarActiveTintColor:colors.ORANGE,
+            tabBarInactiveTintColor:colors.WHITE,
+            tabBarStyle:{
+                borderTopWidth:2,
                 borderTopColor: colors.ORANGE,
                 alignItems:"center",
-                height:"9.2%",
+                height:"8.25%",
                 backgroundColor: colors.BACKGROUNDCOLOR,
-                paddingBottom: 5,
+                paddingBottom: 15,
             },
-            
-            }}
-            
-            screenOptions={({route})=>({
-                tabBarIcon:({color})=> mostrarIcono(route,color),
-            })}
-            
-            >
-            <Tab.Screen component={TiendaStack} name="tienda" options={{title: ""}}/>
+            tabBarLabelStyle:{
+                fontStyle: 'normal',
+                fontWeight: '400',
+                fontSize: 12,
+                lineHeight: 12,
+            }
 
-            <Tab.Screen component={HistorialStack} name="historial" options={{title: ""}}/>
+        }}>
+            <Tab.Screen 
+            component={TiendaStack} 
+            name="Restaurantes" 
+            options={{headerShown:false,
+                    tabBarIcon: ({color}) => (
+                    <Icon
+                      name="home"
+                      color={color}
+                      size={35}
+                    />
+                  ),
+            }}/>
 
-            <Tab.Screen component={ Promotions } name="promociones" options={{title: ""}}/>
+            <Tab.Screen 
+            component={HistorialStack}
+             name="Historial" 
+             options={{headerShown:false,
+                tabBarIcon: ({color}) => (
+                    <Icon
+                      name="history"
+                      color={color}
+                      size={35}
+                    />
+                  ),
+             }}/>
 
-            <Tab.Screen component={ServicioStack} name="servicio" options={{title: ""}}  />
+            <Tab.Screen 
+            component={ServicioStack}
+            name="Servicio"
+            options={{headerShown:false,
+                tabBarIcon: ({color}) => (
+                    <Icon
+                      name="contact-support"
+                      color={color}
+                      size={35}
+                    />
+                  ),
+            }}  />
 
-            <Tab.Screen component={PerfilStack} name="cuenta" options={{title: ""}} />
+            <Tab.Screen component={PerfilStack} name="Cuenta" options={{headerShown:false ,tabBarIcon: ({color}) => (
+                    <Icon
+                      name="person"
+                      color={color}
+                      size={35}
+                    />
+                  ), }} />
 
         </Tab.Navigator>
     );
@@ -53,7 +90,7 @@ function mostrarIcono(route,color)
     switch(route.name)
     {
         case "tienda":
-        iconName = "clipboard-check-multiple-outline";
+        iconName ="cart-outline";
         break;
 
         case "cuenta":
@@ -68,14 +105,14 @@ function mostrarIcono(route,color)
         iconName ="robot";
         break;
 
-        case "promociones":
-        iconName="sale";
+        case "mitienda":
+        iconName="cart-outline";
         break;
 
     }
 
     return(
-        <Icon type="material-community" name={iconName} size={32} color={color} iconStyle={{paddingTop:8}}/>
+        <Icon type="material-community" name={iconName} size={35} color={color} iconStyle={{marginBottom:0,}}/>
         
     )
 }
@@ -88,4 +125,4 @@ export default function AuthRoute()
         </NavigationContainer>
     );
     
-};
+};   
